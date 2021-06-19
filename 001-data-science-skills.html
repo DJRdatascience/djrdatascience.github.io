@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://djrdatascience.github.io/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark)"
+    href="https://djrdatascience.github.io/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark)"
+          href="https://djrdatascience.github.io/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+          href="https://djrdatascience.github.io/theme/pygments/monokai.min.css">
+
+
+  <link rel="stylesheet" type="text/css" href="https://djrdatascience.github.io/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://djrdatascience.github.io/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://djrdatascience.github.io/theme/font-awesome/css/solid.css">
+
+
+    <link href="https://djrdatascience.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="DJR data science Atom">
+
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55543164-6', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->  
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#333333">
+
+<meta name="author" content="Daniel Rasmussen" />
+<meta name="description" content="Interested in becoming a data science? Here we&#39;ll look at the skills employers list in job postings by scraping data from Indeed." />
+<meta name="keywords" content="web scraping, beautifulsoup, nlp">
+
+
+<meta property="og:site_name" content="DJR data science"/>
+<meta property="og:title" content="What skills do you need for data science?"/>
+<meta property="og:description" content="Interested in becoming a data science? Here we&#39;ll look at the skills employers list in job postings by scraping data from Indeed."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://djrdatascience.github.io/001-data-science-skills.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-06-19 12:00:00-04:00"/>
+<meta property="article:modified_time" content="2020-06-19 12:00:00-04:00"/>
+<meta property="article:author" content="https://djrdatascience.github.io/author/daniel-rasmussen.html">
+<meta property="article:section" content="Projects"/>
+<meta property="article:tag" content="web scraping"/>
+<meta property="article:tag" content="beautifulsoup"/>
+<meta property="article:tag" content="nlp"/>
+<meta property="og:image" content="/images/me.jpg">
+
+  <title>DJR data science &ndash; What skills do you need for data science?</title>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6625957038449899",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<body >
+  <aside>
+    <div>
+      <a href="https://djrdatascience.github.io">
+        <img src="/images/me.jpg" alt="DJR" title="DJR">
+      </a>
+
+      <h1>
+        <a href="https://djrdatascience.github.io">DJR</a>
+      </h1>
+
+<p>A data science blog.</p>
+
+      <nav>
+        <ul class="list">
+
+
+              <li>
+                <a target="_self"
+                   href="https://djrdatascience.github.io/pages/about.html">
+                  About
+                </a>
+              </li>
+              <li>
+                <a target="_self"
+                   href="https://djrdatascience.github.io/pages/contact.html">
+                  Contact
+                </a>
+              </li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+          <li>
+            <a  class="sc-linkedin" href="https://www.linkedin.com/in/daniel-rasmussen-b9653a38/" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-github" href="https://github.com/DJRdatascience" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-rss" href="/blog/feeds/all.atom.xml" target="_blank">
+              <i class="fas fa-rss"></i>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle ads-aside"
+           data-ad-client="ca-pub-6625957038449899"
+           data-ad-slot="8752710348"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://djrdatascience.github.io">Home</a>
+
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="https://djrdatascience.github.io/feeds/all.atom.xml">Atom</a>
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="001-data-science-skills">What skills do you need for data science?</h1>
+    <p>
+      Posted on June 19, 2020 in <a href="https://djrdatascience.github.io/category/projects.html">Projects</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p><img alt="Skills WordCloud" src="/images/001_DataScienceJobs/SkillsWordcloud.png"></p>
+<p>Data science is one of the best jobs out there. You work with fascinating datasets on practical, intellectually stimulating problems. It's no wonder that for US News &amp; World Report give it <a href="https://money.usnews.com/careers/best-jobs/data-scientist">consistently high marks</a>, the US Bureau of Labor Statistics predict <a href="https://www.bls.gov/ooh/computer-and-information-technology/computer-and-information-research-scientists.htm#tab-1">excellent job growth over the next decade</a> (15%, above the national average of 4%), and, for the last five years, data science has ranked in the top three of <a href="https://www.glassdoor.com/List/Best-Jobs-in-America-LST_KQ0,20.htm">50 Best Jobs in America</a> by glassdoor.</p>
+<p>So, what does it take to be a data scientist? In the inaugural post of this blog, I thought we'd look into the skills employers are seeking.</p>
+<h2>1. Question</h2>
+<p>What are the most commonly sought-after skills for data scientists?</p>
+<h2>2. Approach</h2>
+<p>While there are many informative posts on data science blogs about necessary skills for an aspiring data scientist, here we will have a more quantitative look at in-demand skills. We are going to look directly at job postings.</p>
+<p>Since there is no online dataset of data science job postings that I'm aware of, we'll need to perform a simple web scraping exercise to gather the data ourselves. We'll collect data from <a href="https://www.indeed.com/">Indeed</a>, which supposedly has listings for &gt;25k jobs in data science at the time of this writing. Given that there were only <a href="https://www.bls.gov/ooh/computer-and-information-technology/computer-and-information-research-scientists.htm#tab-1">~33k total data science jobs in the US in 2019</a>, this number seems a bit fishy. So, the next part of our job will be to clean up the dataset.</p>
+<h2>3. Data collection</h2>
+<p>We will gather information on data science job postings using a simple web scraping python script using the <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">beautifulsoup</a> library.</p>
+<p>First, we want to explore the website and perform a few searches. This will enable us to learn the url structure, which we need to understand in order to loop through search results.</p>
+<p>Fortunately, the job searches have a simple to understand structure (below).<br>
+https://www.indeed.com/jobs?q=data+science&amp;start=</p>
+<p>By default, 10 job pages are shown. So if we want to step through search results, we would put 0 at the end of the above url, then 10, 20, 30, etc. This works, but it would be better to display more results in order to load fewer pages. In the "Advanced Job Search" page, there is an option to increase results displayed per page to 50. It modifies the url in a simple way.<br>
+https://www.indeed.com/jobs?q=data+science&amp;limit=50&amp;start=</p>
+<p>This will be our base url that we will loop through when performing our scrape. It is important to note that the order of job results is not reproduceable. Jobs are commonly being added, and the order results are displayed is controlled by Indeed. What this means for us is that our search may miss some job postings, and it may pull the same posting more than once. Neither is much of a problem for our analysis. We want a large number of postings, but we do not need all of the postings. So, we just will want to run this script a few times over the course of two or three days. We'll end up with a lot of duplicates, which can easily remove later.</p>
+<p>Now, we're ready to code the scraper. I'll walk through some of the code below. You can find the code in its entirety, and the results of the job scrape, on <a href="https://github.com/DJRdatascience/blog/tree/main/001_DataScienceSkills">GitHub</a>.</p>
+<p>We'll be using python 3. First, we need to import the following libraries.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">Request</span><span class="p">,</span> <span class="n">urlopen</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Next, we define some of our variables. You'll note that we are storing our scraped data in a variable named <code class="python">data</code>, which includes data we scrape on the job title, date posted, company name, star rating of the company, location, salary, description, and posting link. This is more information than we need to answer our question, but since we are here already, might as well scrape all of the tangential data. The other information could come in handy down the line.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is where we record our data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">]</span> <span class="c1"># 0:Title, 1: Date posted, 2:Company, 3:Rating, 4:Location, 5:Salary, 6:description, 7:Link</span>
+
+<span class="c1"># Record the time the search initiated and put the output time in the file name</span>
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">now_str</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%H-%M-%S&quot;</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;jobs_&#39;</span><span class="p">,</span> <span class="n">now_str</span><span class="p">,</span> <span class="s1">&#39;.ftr&#39;</span><span class="p">])</span>
+
+<span class="c1">#This is the base url for searches</span>
+<span class="n">search_base</span> <span class="o">=</span> <span class="s1">&#39;https://www.indeed.com/jobs?q=data+science&amp;limit=50&amp;start=&#39;</span>
+</code></pre></div>
+
+<p><br></p>
+<p>We then loop through the results pages. In each loop, we will modify the base url by concatenating the number of jobs we have scraped. We then load the webpage and create a soup object.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Perform search and create a soup object</span>
+<span class="n">search_url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">search_base</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">)])</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">search_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0&#39;</span><span class="p">})</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># Allow 3 seconds for the search to occur</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>We'll refer to each job posting displayed on the a search results page as a job card. We want to find all of the job cards on each search result page. The way that we find the relevant html code for identifying the job cards is to perform the search in our normal browser (e.g., chrome, edge, etc.), right click the page, and select view source or, even better, inspect.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Locate job cards</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># 0: No popup, 1: Popup</span>
+<span class="n">cards</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;jobsearch-SerpJobCard unifiedRow row result&#39;</span><span class="p">})</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cards</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># If job cards cannot be found, there may be a popup, which changes some of our search parameters</span>
+    <span class="n">cards</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;a[class*=&#39;sponsoredJob resultWithShelf sponTapItem tapItem-noPadding desktop&#39;]&quot;</span><span class="p">)</span> <span class="c1">#Partial text</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+
+<p>You'll note that I have two ways of finding the job cards here. That is because sometimes there is a popup, which changes the html code of the search results page. Unfortunately, we do not have a simple way to close the popup. If we were using <a href="https://selenium-python.readthedocs.io/">selenium</a>, this could be easily done, but for this exercise, we're going to use beautifulsoup. Fortunately, the html does not change very much when the popup is active. So, we'll simply scrape the postings using two conditions (flag = 0 if the popup did not load, flag = 1 if the popup loaded).
+<br><br></p>
+<p>We then perform several searches with our soup object to find the relevant data in our job cards. Here is an example of how we find the date of posting. I've included this one because it is a bit more complex than the others. The date of posting is relative (i.e., days before today). If the posting was made today, the posted date can read as "just posted" or "today". If it is older, it will say "1 day ago", "2 days ago", etc. up until "30 days ago", beyond which it becomes "30+ days ago". To put these dates into an calendar days, we need to use <a href="https://docs.python.org/3/library/datetime.html">datetime</a>. It is important to preserve as much of the original information as possible. So, we keep the "+" when the posting is &gt;30 days old.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get date of posting</span>
+<span class="k">if</span> <span class="n">flag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">pull</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;date date-a11y&#39;</span><span class="p">})</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">pull</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span><span class="p">})</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">relative_date</span> <span class="o">=</span> <span class="n">pull</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s1">&#39;just&#39;</span> <span class="ow">in</span> <span class="n">relative_date</span> <span class="ow">or</span> <span class="s1">&#39;today&#39;</span> <span class="ow">in</span> <span class="n">relative_date</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">today</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;active&#39;</span> <span class="ow">in</span> <span class="n">relative_date</span><span class="p">:</span>
+            <span class="n">relative_date</span> <span class="o">=</span> <span class="n">relative_date</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span>
+        <span class="n">abs_date</span> <span class="o">=</span> <span class="n">today</span><span class="o">-</span><span class="n">timedelta</span><span class="p">(</span> <span class="n">days</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span> <span class="n">relative_date</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">abs_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;+&#39;</span> <span class="ow">in</span> <span class="n">relative_date</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="s1">&#39;+&#39;</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Critical to this project is obtaining the job description for each posting, which includes information on preferred and required skills. This requires loading a separate page.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get description</span>
+<span class="n">job_url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;https://www.indeed.com/viewjob?jk=&#39;</span><span class="p">,</span><span class="n">card</span><span class="p">[</span><span class="s1">&#39;data-jk&#39;</span><span class="p">]])</span>
+<span class="n">job_html</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">job_url</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0&#39;</span><span class="p">})</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">job_page</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">job_html</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">job_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">job_page</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="n">pull</span> <span class="o">=</span> <span class="n">job_soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;jobsearch-jobDescriptionText&#39;</span><span class="p">})</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">pull</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>And, most importantly, we pause the script between each job card. This is so we do not overwhelm Indeed's server. You may also have noted that our method of looping through the job cards may not have been the fastest way of pulling the necessary information from the search results (i.e., searching each job card individually for relevant information). This is not problematic because we want to slow our requests.</p>
+<div class="highlight"><pre><span></span><code><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>While we perform our scrape, we'll save the output data as a feather file, which is a <a href="https://towardsdatascience.com/the-best-format-to-save-pandas-data-414dca023e0d">great way to store a DataFrame</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Posted&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Company&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rating&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Location&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Salary&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Link&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="k">del</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<h2>4. Data wrangling</h2>
+<p>After running this script a few times over a few days (between 5/29/2020 and 6/3/2020), I ended up with 9638 scrapped jobs. Sadly, many of these were duplicates, but they were easy to cleanup.</p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s1">&#39;job_scrapes.ftr&#39;</span><span class="p">)</span> <span class="c1"># This is the file where the scrapped job postings were saved</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;Link&#39;</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Identical job postings have the same url. So, we use that column to remove our duplicates.</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Now we want to explore the data by looking at some of the entries. In doing so, we can see that a large number of the job titles include "analyst" or "engineer". Typically "data scientist" is viewed as a separate job as job titles that include "analyst" or "engineer". So, we want to filter out these jobs. Ultimately, we end up with 1920 jobs.</p>
+<div class="highlight"><pre><span></span><code><span class="n">drop</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;Analytics&#39;</span><span class="p">,</span> <span class="s1">&#39;Analyst&#39;</span><span class="p">,</span> <span class="s1">&#39;Engineer&#39;</span><span class="p">])</span> <span class="c1"># Titles that don&#39;t pass</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">Title</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span> <span class="s1">&#39;(?i)&#39;</span><span class="o">+</span><span class="n">drop</span> <span class="p">)</span> <span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Unfortunately, the job postings are not systematic in the way the job skills are described. So, there is no easy way to find the required and preferred skills for our entire dataset. So, we'll look at the job skills in a very simple way: we'll look at what percentage of the posts include certain job skills anywhere in the text of the description.</p>
+<h2>5. Findings</h2>
+<p>Below are the percentage of job postings (out of our 1920 postings) that mention the indicated skill somewhere in the job description.<br>
+<img alt="Table indicating percentage of job postings mentioning a certain skill" src="/images/001_DataScienceJobs/JobSkillTable.png">
+<br></p>
+<p>These numbers give a sense of the relative importance of the indicated skills, but it is important to keep in mind that we made a lot of simplifying assumptions in our analysis (covered below). So, these numbers should be taken with a grain of salt.</p>
+<h2>6. Limitations</h2>
+<p>Here we performed a quick analysis of job skills in Data Science postings. What we looked at was a back-of-the-envelope approximation. There are a number of ways we could be more thorough.</p>
+<ol>
+<li>Diversify and expand our data. We only pulled job data from Indeed over a brief period of time. It would be helpful to draw data from other job boards over an extended period of time.</li>
+<li>Screen our data more carefully. We identified important job skills by determining the percentage of job descriptions that contained certain keywords. One weakness of this approach was that we used an existing list of keywords. It may have been helpful to first search postings for common words or phrases to identify what keywords we should have used. Another weakness was that we did not test whether our keywords were associated with negative language. For instance, if the posting said "python skills are not required", we would have labeled that job ad as requiring python because the keyword occurred.</li>
+<li>The text of the posting may not tell the whole story. For one, synonyms interfere with analysis. For two, some characteristics may be under represented in the text of job descriptions but still be important. For instance, the word curiosity only occurs in 134 posts, but I think most businesses want their data scientists to be curious!</li>
+<li>Data science is a broad field. We cast the net broadly here on purpose, but it is important to keep in mind that the analyzed jobs span a wide range of titles (e.g., "Data scientist" to "Mathematical Technician"), seniority, etc.</li>
+</ol>
+<h2>7. Some other interesting tidbits</h2>
+<p>There are a lot of interesting insights to pull from these job postings. Here, we'll have a quick look at a few.</p>
+<h3>Commonly occurring words or phrases</h3>
+<p>With a few extra lines of code, and some natural language processing, we can have a look at the most commonly occurring words or phrases (n-grams).<br></p>
+<p>First, we import the necessary libraries and store our job-scrape data in a DataFrame.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">everygrams</span><span class="p">,</span> <span class="n">FreqDist</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<span class="n">lem</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s1">&#39;jobs.ftr&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Next, we want to process the text in our description. In this code, we add spaces before capital letters (this is because some of these spaces were removed when we scrapped the data), remove most punctuation, split the description string into a list of single-word strings, combine all lists of strings into a single list, and covert letters to lower case.</p>
+<div class="highlight"><pre><span></span><code><span class="n">unigrams</span>  <span class="o">=</span> <span class="p">(</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?&lt;![A-Z])(?&lt;!^)([A-Z])&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot; \1&quot;</span><span class="p">,</span><span class="n">regex</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;,.!&amp;:()&#39;</span><span class="p">))</span>
+<span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+<span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Then, we remove stop words (e.g., and, was, any) and lemmatize.</p>
+<div class="highlight"><pre><span></span><code><span class="n">unigrams</span> <span class="o">=</span> <span class="n">unigrams</span><span class="p">[</span><span class="o">~</span><span class="n">unigrams</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">stop_words</span><span class="p">)]</span>
+<span class="n">unigrams_lem</span> <span class="o">=</span> <span class="p">[</span><span class="n">lem</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">unigrams</span><span class="p">]</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Finally, we can search for the n-grams. In this case, we look for the most common words or phrases that have between 1 and 3 words.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ngram</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span> <span class="n">everygrams</span><span class="p">(</span><span class="n">unigrams</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">fdist</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">ngram</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">fdist</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">3000</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Phrase&#39;</span><span class="p">,</span> <span class="s1">&#39;Frequency&#39;</span><span class="p">])</span>
+</code></pre></div>
+
+<p><br></p>
+<p>We can search our results above and pull out words/phrases of interest. Below, I show the frequency of job-skill related words in our 1920. These data were also used to create the word cloud at the top of this post.</p>
+<p><br>
+<img alt="Bar graph of commonly occurring words" src="/images/001_DataScienceJobs/SkillsBarplot.png"></p>
+<h3>Where are the jobs?</h3>
+<p>We can also look at where the jobs are located. To create the bubble plot of job locations below, I used plotly. The process was somewhat complicated by the fact that the job locations did not have latitudes and longitudes. So, I downloaded coordinates for US cities <a href="http://download.geonames.org/export/zip/">here</a>. We also have to remove some pesky punctuation. After doing that, we try to find a zip code associated with the job, if there is no zip code, we base our search off the city and state. Below is the code.</p>
+<div class="highlight"><pre><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Location</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;•&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">long</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">misses</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">ind</span><span class="p">,</span><span class="n">loc</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="n">zips</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;\D(\d</span><span class="si">{5}</span><span class="s1">)\D&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">loc</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span> <span class="n">c</span><span class="o">.</span><span class="n">Zip</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">zips</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">lat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">l</span><span class="o">.</span><span class="n">Lat</span> <span class="p">)</span>
+        <span class="n">long</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">l</span><span class="o">.</span><span class="n">Long</span> <span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">city</span> <span class="o">=</span> <span class="n">loc</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">city</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">city</span> <span class="o">=</span> <span class="n">city</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;Manhattan&#39;</span><span class="p">:</span>
+                <span class="n">city</span> <span class="o">=</span> <span class="s1">&#39;New York&#39;</span>
+            <span class="k">elif</span> <span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;St. Louis&#39;</span><span class="p">:</span>
+                <span class="n">city</span> <span class="o">=</span> <span class="s1">&#39;Saint Louis&#39;</span>
+            <span class="k">elif</span> <span class="s1">&#39;San Francisco&#39;</span> <span class="ow">in</span> <span class="n">city</span> <span class="ow">or</span> <span class="s1">&#39;Bay Area&#39;</span> <span class="ow">in</span> <span class="n">city</span><span class="p">:</span>
+                <span class="n">city</span> <span class="o">=</span> <span class="s1">&#39;San Francisco&#39;</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">State_Code</span> <span class="o">==</span> <span class="n">state</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">City</span> <span class="o">==</span> <span class="n">city</span><span class="p">)</span> <span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">lat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">l</span><span class="o">.</span><span class="n">Lat</span> <span class="p">)</span>
+            <span class="n">long</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">l</span><span class="o">.</span><span class="n">Long</span> <span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;Remote&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">loc</span><span class="p">:</span>
+                <span class="n">misses</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">out</span><span class="p">[</span><span class="s1">&#39;Lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lat</span>
+<span class="n">out</span><span class="p">[</span><span class="s1">&#39;Long&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">long</span>
+<span class="n">out_freq</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Now, we have our results! In the map below, the marker size and color indicate the number of jobs in a given location.
+<br>
+<img alt="Bubble plot of job locations" src="/images/001_DataScienceJobs/JobMap.png"></p>
+<p>We can also consider how many of the jobs are remote. I did this by simply searching for the term "remote" in the location. I should note that some of the jobs are described as being remote in the description. So, our analysis will miss these jobs.
+<br><br>
+<img alt="Bar graph of job location" src="/images/001_DataScienceJobs/LocationBar.png"></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://djrdatascience.github.io/tag/web-scraping.html">web scraping</a>
+      <a href="https://djrdatascience.github.io/tag/beautifulsoup.html">beautifulsoup</a>
+      <a href="https://djrdatascience.github.io/tag/nlp.html">nlp</a>
+    </p>
+  </div>
+
+  <div class="center social-share">
+    <p>Like this article? Share it with your friends!</p>
+    <div class="addthis_native_toolbox"></div>
+    <div class="addthis_sharing_toolbox"></div>
+    <div class="addthis_inline_share_toolbox"></div>
+  </div>
+
+
+    <div class="addthis_relatedposts_inline"></div>
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle ads-responsive"
+         data-ad-client="ca-pub-6625957038449899"
+         data-ad-slot="4843941849"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'flex-pelican';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+    <footer>
+<p>
+  &copy; 2021  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://djrdatascience.github.io/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="light"
+          type="text/javascript">
+  </script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55adbb025d4f7e55" async="async"></script>
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " DJR data science ",
+  "url" : "https://djrdatascience.github.io",
+  "image": "/images/me.jpg",
+  "description": "DJR data science - A data science blog."
+}
+</script>
+
+</body>
+</html>
